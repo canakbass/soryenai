@@ -1381,3 +1381,170 @@ html.lenis, html.lenis body {
   left: 150%;
 }
 
+
+/* =======================================================
+   THE GRAND REDESIGN (FRAMER / AWWWARDS VIBE)
+   ======================================================= */
+
+:root {
+  --bg: #050505;
+  --bg-elev: rgba(255, 255, 255, 0.02);
+  --fg: #ffffff;
+  --fg-muted: #999999;
+  --line: rgba(255,255,255,0.06);
+  --accent: #7A5CFF;
+  --font-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 24px;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--bg);
+  color: var(--fg);
+  font-weight: 400;
+}
+
+/* Global Noise Texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* --- Floating Pill Header --- */
+#site-header {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1000px;
+  background: rgba(10, 10, 12, 0.6) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 100px;
+  height: 64px;
+  transition: all 0.4s var(--ease);
+}
+.header__wrap {
+  height: 100%;
+  border-bottom: none !important;
+  padding: 0 16px;
+}
+#site-header.is-compact {
+  top: 16px;
+  height: 56px;
+  background: rgba(10, 10, 12, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.nav__list {
+  gap: 32px;
+}
+.nav__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-muted) !important;
+  letter-spacing: 0;
+}
+.nav__link:hover {
+  color: #fff !important;
+}
+
+/* --- Devasa ve Sıkışık Tipografi (Oversized Typography) --- */
+.h1, .h2, .h3, h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.lead {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--fg-muted);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* --- Butonlar (Hap Şeklinde / Pill) --- */
+.btn {
+  border-radius: 100px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+  padding: 16px 32px !important;
+  font-size: 15px !important;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #4F46E5 0%, #7A5CFF 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(122, 92, 255, 0.3) !important;
+}
+
+.nav__btn {
+  border-radius: 100px !important;
+  padding: 8px 20px !important;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* --- Genel İyileştirmeler (Kartlar) --- */
+.svc-card {
+  border-radius: 24px;
+  background: rgba(20, 20, 22, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+.svc-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Eyebrow Pill (Bölüm Etiketleri) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.eyebrow__num {
+  color: var(--accent);
+}
+.eyebrow__sep {
+  opacity: 0.3;
+  margin: 0 8px;
+}
+
+/* Yeni Hero Orb Glow */
+.hero__bg {
+  background: radial-gradient(circle, rgba(122, 92, 255, 0.15) 0%, rgba(5, 5, 5, 0) 60%) !important;
+  filter: blur(100px) !important;
+}
+.orb-bg {
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 60%) !important;
+}
+
