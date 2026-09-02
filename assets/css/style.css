@@ -1624,3 +1624,57 @@ body::before {
   transform-origin: left;
   border-radius: 0 4px 4px 0;
 }
+
+/* --- Fixes & New Experience Details --- */
+
+/* 1. Hero Padding Fix (Prevent Header Overlap) */
+.hero {
+  padding-top: 180px !important;
+}
+
+/* 2. Ambient Mouse Glow (Arka Plan Işığı) */
+#ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle closest-side, rgba(122, 92, 255, 0.12), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0; /* İçeriğin arkasında kalacak */
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* Z-index ayarları: İçerik glow'un üstünde kalmalı */
+.hero, .section, #site-header {
+  z-index: 1;
+  position: relative;
+}
+
+/* 3. Header Animated Glow Border */
+#site-header {
+  background: rgba(10, 10, 12, 0.4) !important; /* Biraz daha şeffaf */
+}
+#site-header::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(122, 92, 255, 0.6) 50%, rgba(255,255,255,0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  background-size: 200% 100%;
+  animation: headerShimmer 4s linear infinite;
+}
+
+@keyframes headerShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+

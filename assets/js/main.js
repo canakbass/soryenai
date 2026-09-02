@@ -472,3 +472,21 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   }
 
 })();
+
+/* --- Ambient Mouse Glow (Arka Plan Işığı) --- */
+(function() {
+  if (window.innerWidth <= 768 || 'ontouchstart' in window) return;
+
+  const ambientGlow = document.createElement('div');
+  ambientGlow.id = "ambient-glow";
+  document.body.appendChild(ambientGlow);
+
+  // GSAP quickTo for extreme performance
+  const xTo = gsap.quickTo(ambientGlow, "x", {duration: 0.8, ease: "power3"});
+  const yTo = gsap.quickTo(ambientGlow, "y", {duration: 0.8, ease: "power3"});
+
+  window.addEventListener("mousemove", (e) => {
+    xTo(e.clientX);
+    yTo(e.clientY);
+  });
+})();
