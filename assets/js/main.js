@@ -5,14 +5,14 @@ gsap.registerPlugin(ScrollTrigger);
 const tlPreload = gsap.timeline();
 
 // Setup initial states
-gsap.set('#site-header', { y: -100, opacity: 0 });
+gsap.set('#site-header', { y: -100, opacity: 0, xPercent: -50 });
 
 tlPreload.to('.preloader-logo', { opacity: 1, duration: 1, ease: "power2.inOut" })
          .to('.preloader-progress', { width: "100%", duration: 1.5, ease: "power4.inOut" })
          .to('.preloader', { backgroundColor: "transparent", duration: 0.8 }, "+=0.2")
          .to('.preloader-progress', { opacity: 0, duration: 0.3 }, "<")
          .to('.preloader-logo', { scale: 0.5, y: -window.innerHeight/2 + 40, opacity: 0, duration: 1, ease: "power3.inOut" }, "<")
-         .to('#site-header', { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, "-=0.6")
+         .to('#site-header', { y: 0, opacity: 1,  duration: 0.8, ease: "power3.out" }, "-=0.6")
          .fromTo('#h-eye', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.5")
          .fromTo('#h-title', { y: 40, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2 }, "-=0.6")
          .fromTo('#h-lead', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
@@ -29,28 +29,15 @@ const speedUp = () => {
 };
 document.addEventListener('click', speedUp);
 
-// 1.5 Smart Header & Ambient Glow
-let lastScroll = 0;
-const header = document.getElementById('site-header');
-
+// 1.5 Scroll Progress Bar
+const scrollProgress = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  // Smart Header Logic
-  if (currentScroll > 50) {
-    header.classList.add('is-scrolled');
-  } else {
-    header.classList.remove('is-scrolled');
+  if(scrollProgress) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = progress + "%";
   }
-
-  if (currentScroll > lastScroll && currentScroll > 200) {
-    // Scrolling down -> hide
-    header.classList.add('is-hidden');
-  } else {
-    // Scrolling up -> show
-    header.classList.remove('is-hidden');
-  }
-  lastScroll = currentScroll <= 0 ? 0 : currentScroll;
 }, { passive: true });
 
 // Ambient Glow Setup

@@ -17,6 +17,7 @@
   <div class="preloader-progress"></div>
 </div>
 
+<div id="scroll-progress" class="scroll-progress"></div>
 <header class="site-header" id="site-header">
   <div class="wrap site-header__inner">
     <a class="logo" href="index.html">SORYEN<span class="muted">AI</span></a>
@@ -83,13 +84,87 @@
         <h2 class="h2">Müşteri geldiğinde ne oluyor?</h2>
       </div>
       
+      
       <div class="senaryolar-grid">
-        <div class="senaryo-card"><h3>Instagram Lead'den Satışa</h3><p>Sosyal medya etkileşimleri anında satış fırsatına dönüşür. Yoruma bırakılan bir kelimeyle başlayan süreçte AI, DM üzerinden müşteriyle iletişime geçer, ihtiyacını analiz eder ve nitelikli veriyi doğrudan CRM sisteminize aktararak satış ekibinize sıcak lead olarak iletir.</p></div>
-        <div class="senaryo-card"><h3>Telefondan Randevuya</h3><p>Gelen çağrılar 7/24 insan doğallığında karşılanır. Sistem müşterinin niyetini saniyeler içinde anlar, takviminizdeki boşlukları kontrol ederek randevuyu kesinleştirir ve görüşme sonunda otomatik WhatsApp onay/hatırlatma mesajı gönderir.</p></div>
-        <div class="senaryo-card"><h3>Web'den Omnichannel'a</h3><p>Ziyaretçi web sitenizdeki chatbot ile görüşmeye başlar. Konuşma yarıda kalsa bile sistem lead bilgisini toplar; ertesi gün WhatsApp üzerinden aynı bağlamla (müşteriyi tanıyarak) iletişime geçer ve süreci kaldığı yerden tamamlar.</p></div>
-        <div class="senaryo-card"><h3>Gelen Mailden Teklife</h3><p>Şirketinize gelen karmaşık teklif veya bilgi taleplerini okuyan sistem, talebin detaylarını analiz eder, veri tabanınızdan gerekli ürün/fiyat bilgilerini çeker ve saniyeler içinde profesyonel bir e-posta taslağı oluşturarak yönetici onayına sunar.</p></div>
-        <div class="senaryo-card"><h3>Karmaşık Dokümandan Veriye</h3><p>Müşteriden veya tedarikçiden gelen PDF, fatura veya formlar anında taranır. Gerekli teknik alanlar (isim, tutar, tarih, ürün kodu) büyük bir doğrulukla ayrıştırılır, veri doğrulama kurallarından geçirilir ve doğrudan ERP/CRM sisteminize işlenir.</p></div>
-        <div class="senaryo-card"><h3>Multi-Agent Takım Çalışması</h3><p>Süreci tek bir bot değil, farklı uzmanlıkları olan bir yapay zekâ takımı yürütür. 'Lead Agent' müşteriyi karşılar, 'Sales Agent' ürünü sunar, 'Booking Agent' randevuyu ayarlar ve 'Follow-up Agent' satış sonrasını takip eder.</p></div>
+        
+        <div class="senaryo-card">
+          <h3>Instagram Lead'den Satışa</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">📱</div><div class="fs-text">Yoruma "Fiyat"<br>yazılır</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">💬</div><div class="fs-text">DM açılır,<br>ihtiyaç sorulur</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📇</div><div class="fs-text">İletişim bilgisi<br>alınır</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🤝</div><div class="fs-text">Satış ekibine<br>CRM kaydı</div></div>
+          </div>
+        </div>
+
+        <div class="senaryo-card">
+          <h3>Kaçan Çağrıdan Randevuya</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">📞</div><div class="fs-text">Müşteri arar</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🤖</div><div class="fs-text">Voice AI<br>7/24 cevaplar</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📅</div><div class="fs-text">Takvime<br>randevu atar</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">✅</div><div class="fs-text">WhatsApp<br>onay mesajı</div></div>
+          </div>
+        </div>
+
+        <div class="senaryo-card">
+          <h3>Web'den Omnichannel'a</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">💻</div><div class="fs-text">Web Chatbot<br>sohbet başlar</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🏃‍♂️</div><div class="fs-text">Sohbet<br>yarıda kalır</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📲</div><div class="fs-text">Ertesi gün<br>WhatsApp atar</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🔗</div><div class="fs-text">Bağlam kopmadan<br>devam eder</div></div>
+          </div>
+        </div>
+
+        <div class="senaryo-card">
+          <h3>Gelen Mailden Teklife</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">📧</div><div class="fs-text">Talep maili<br>gelir</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🧠</div><div class="fs-text">AI metni<br>analiz eder</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📊</div><div class="fs-text">Veritabanından<br>fiyat çeker</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📄</div><div class="fs-text">Teklif taslağı<br>hazırlar</div></div>
+          </div>
+        </div>
+
+        <div class="senaryo-card">
+          <h3>Karmaşık Dokümandan Veriye</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">📑</div><div class="fs-text">PDF / Fatura<br>yüklenir</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🔍</div><div class="fs-text">Bilgiler<br>ayrıştırılır</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">⚙️</div><div class="fs-text">Doğrulama<br>kuralları</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">💾</div><div class="fs-text">ERP / CRM'e<br>işlenir</div></div>
+          </div>
+        </div>
+
+        <div class="senaryo-card">
+          <h3>Multi-Agent Takım Çalışması</h3>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="fs-icon">👋</div><div class="fs-text">Lead<br>Agent</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">💼</div><div class="fs-text">Sales<br>Agent</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">📅</div><div class="fs-text">Booking<br>Agent</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="fs-icon">🔄</div><div class="fs-text">Follow-up<br>Agent</div></div>
+          </div>
+        </div>
+
       </div>
 
     </div>
