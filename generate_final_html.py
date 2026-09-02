@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+new_html = """<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
@@ -248,3 +250,8 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+"""
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(new_html)
+

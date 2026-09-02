@@ -84,3 +84,32 @@ function raf(time) {
 }
 requestAnimationFrame(raf)
 
+
+// 5. Cinematic Reveals for New Content
+const revealElements = gsap.utils.toArray('.sector-card, .tl-item, .trust-cell');
+revealElements.forEach(el => {
+  gsap.fromTo(el, 
+    { y: 40, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
+});
+
+// Form Button interaction
+const formBtn = document.querySelector('.cinematic-form .btn');
+if(formBtn) {
+  formBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    formBtn.innerText = "Gönderiliyor...";
+    setTimeout(() => {
+      formBtn.innerText = "Talebiniz Alındı";
+      formBtn.style.background = "#10B981"; // success green
+    }, 1500);
+  });
+}

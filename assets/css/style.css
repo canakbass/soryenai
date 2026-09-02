@@ -107,3 +107,58 @@ body::before {
 /* Contact */
 .contact-scene { align-items: center; text-align: center; }
 
+
+/* --- V3 MISSING CONTENT STYLES --- */
+
+/* Proof Bar */
+.proof-bar { margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+.proof-bar span { padding: 8px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+/* Grid Scene (Sektörler) */
+.grid-scene { align-items: center; padding: 120px 0; }
+.grid-scene-inner { width: 100%; max-width: 1000px; padding: 0 24px; text-align: center; }
+.sector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.sector-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 32px 24px; border-radius: 20px; text-align: left; transition: transform 0.3s, background 0.3s; }
+.sector-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.06); }
+.sector-card h3 { font-size: 1.2rem; margin-bottom: 12px; color: #fff; }
+.sector-card p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+/* Split Scene (Süreç & Güven) */
+.split-scene { padding: 120px 0; justify-content: center; }
+.split-inner { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+@media (max-width: 768px) { .split-inner { grid-template-columns: 1fr; } }
+.alt-split .split-inner { direction: rtl; } /* Reverses order visually */
+.alt-split .split-left, .alt-split .split-right { direction: ltr; }
+
+/* Timeline (Nasıl Çalışır) */
+.timeline { display: flex; flex-direction: column; gap: 32px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 24px; }
+.tl-item h4 { font-size: 1.3rem; margin-bottom: 8px; color: var(--accent-glow); }
+.tl-item p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+/* Trust Grid (Güven) */
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.trust-cell { background: #080808; border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; }
+.trust-cell h4 { font-size: 1.1rem; margin-bottom: 8px; color: #fff; }
+.trust-cell p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* Cinematic Form */
+.contact-scene { padding: 120px 0; background: #000; }
+.contact-inner { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+.cinematic-form { display: flex; flex-direction: column; gap: 24px; background: rgba(255,255,255,0.02); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.cinematic-form label { display: flex; flex-direction: column; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 600; gap: 8px; }
+.cinematic-form input, .cinematic-form select, .cinematic-form textarea { width: 100%; padding: 14px 16px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-family: inherit; font-size: 1rem; outline: none; transition: border 0.3s; }
+.cinematic-form input:focus, .cinematic-form select:focus, .cinematic-form textarea:focus { border-color: var(--accent); }
+.form-actions { display: flex; align-items: center; margin-top: 16px; }
+
+/* Footer */
+.site-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 0 40px; background: #030303; }
+.footer-wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+.footer-col h4 { font-size: 1.1rem; color: #fff; margin-bottom: 24px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col ul a { color: rgba(255,255,255,0.5); font-size: 0.95rem; transition: color 0.3s; }
+.footer-col ul a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; color: rgba(255,255,255,0.4); font-size: 0.9rem; display: flex; justify-content: space-between; }
