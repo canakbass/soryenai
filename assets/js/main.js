@@ -392,8 +392,8 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const tl = gsap.timeline();
     
     // Header'ı da hafifçe yukarıdan indirelim
-    gsap.set('#site-header', { y: -100, opacity: 0 });
-    tl.to('#site-header', { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }, 0.2);
+    gsap.set('#site-header', { y: -100, opacity: 0, xPercent: -50 });
+    tl.to('#site-header', { y: 0, opacity: 1, xPercent: -50, duration: 1.2, ease: "power4.out" }, 0.2);
 
     // Hero elementlerini hazırlıyoruz
     gsap.set([heroH1, heroLead, heroBtns], { y: 80, opacity: 0, filter: "blur(12px)" });
