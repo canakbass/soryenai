@@ -298,3 +298,91 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     );
   });
 }
+
+/* =======================================================
+   AWWWARDS PREMIUM WOW EFEKTLERİ (Cursor & Manyetik Buton)
+   ======================================================= */
+(function() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Mobil cihazlarda imleç efekti göstermiyoruz
+  if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+    document.body.style.cursor = 'auto';
+    const links = document.querySelectorAll('a, button, .svc-card, .bento-cell');
+    links.forEach(l => l.style.cursor = 'pointer');
+    return;
+  }
+
+  // 1. Custom Cursor
+  const dot = document.createElement('div');
+  dot.classList.add('cursor-dot');
+  const outline = document.createElement('div');
+  outline.classList.add('cursor-outline');
+  
+  document.body.appendChild(dot);
+  document.body.appendChild(outline);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  
+  // GSAP ile smooth takip
+  gsap.set(dot, { xPercent: -50, yPercent: -50 });
+  gsap.set(outline, { xPercent: -50, yPercent: -50 });
+
+  const xSetDot = gsap.quickSetter(dot, "x", "px");
+  const ySetDot = gsap.quickSetter(dot, "y", "px");
+  
+  const xSetOutline = gsap.quickSetter(outline, "x", "px");
+  const ySetOutline = gsap.quickSetter(outline, "y", "px");
+
+  window.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    xSetDot(mouseX);
+    ySetDot(mouseY);
+  });
+
+  // Outline gecikmeli takip eder (yaylı his)
+  gsap.ticker.add(() => {
+    const dt = 1.0 - Math.pow(1.0 - 0.2, gsap.ticker.deltaRatio()); 
+    const currentX = gsap.getProperty(outline, "x") || mouseX;
+    const currentY = gsap.getProperty(outline, "y") || mouseY;
+    
+    xSetOutline(currentX + (mouseX - currentX) * 0.15);
+    ySetOutline(currentY + (mouseY - currentY) * 0.15);
+  });
+
+  // Hover efektleri
+  const interactables = document.querySelectorAll('a, button, .svc-card, .bento-cell');
+  interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => outline.classList.add('is-hovering'));
+    el.addEventListener('mouseleave', () => outline.classList.add('is-hovering') ? outline.classList.remove('is-hovering') : null);
+  });
+
+  // 2. Manyetik Butonlar (Magnetic Effect)
+  const btns = document.querySelectorAll('.btn, .nav__btn');
+  btns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const h = rect.width / 2;
+      const w = rect.height / 2;
+      const x = e.clientX - rect.left - h;
+      const y = e.clientY - rect.top - w;
+      
+      gsap.to(btn, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, {
+        x: 0,
+        y: 0,
+        duration: 0.7,
+        ease: 'elastic.out(1, 0.3)'
+      });
+    });
+  });
+})();
