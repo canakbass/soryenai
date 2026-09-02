@@ -1345,81 +1345,39 @@ html.lenis, html.lenis body {
 
 
 /* =======================================================
-   AWWWARDS PREMIUM WOW EFEKTLERİ
+
+/* =======================================================
+   PREMIUM BUTTON & CARD EFFECTS (Manyetik & Parlama)
    ======================================================= */
 
-/* --- Custom Cursor --- */
-body {
-  /* Opsiyonel: Orijinal imleci gizleyebiliriz ama bazı kullanıcılar sevmeyebilir. 
-     Şimdilik sadece üzerine custom imleç bindireceğiz. */
-  cursor: none; 
-}
-
-a, button, .svc-card, .bento-cell {
-  cursor: none !important;
-}
-
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--accent);
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(66, 117, 255, 0.5);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-
-/* Hover durumunda imlecin büyümesi */
-.cursor-outline.is-hovering {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(66, 117, 255, 0.1);
-  border-color: transparent;
-  backdrop-filter: blur(2px);
-}
-
-/* --- Premium / Manyetik Buton Hover (Shiny Sweep) --- */
-.btn {
+/* --- Parlama Efekti (Shiny Sweep) --- */
+.btn, .svc-card {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.1, 0.7, 0.1, 1), box-shadow 0.3s var(--ease), background 0.3s var(--ease) !important;
   z-index: 1;
 }
 
-/* Buton parlaması (Sweep effect) */
-.btn::after {
+/* Buton ve Kart parlaması (Sweep effect) */
+.btn::after, .svc-card::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -100%;
+  left: -150%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
   transform: skewX(-20deg);
   z-index: -1;
-  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
 }
 
-.btn:hover {
-  box-shadow: 0 10px 20px rgba(66, 117, 255, 0.3), 0 0 40px rgba(66, 117, 255, 0.2) !important;
-  transform: scale(1.05); /* JS ile manyetik yapılmazsa default büyüme */
+.btn:hover, .svc-card:hover {
+  box-shadow: 0 10px 20px rgba(66, 117, 255, 0.2), 0 0 30px rgba(66, 117, 255, 0.1) !important;
 }
 
-.btn:hover::after {
+.btn:hover::after, .svc-card:hover::after {
   left: 150%;
 }
 
