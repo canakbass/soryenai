@@ -490,3 +490,28 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     yTo(e.clientY);
   });
 })();
+
+/* --- Scroll Sırasında Hover/Tilt Takılmasını Önleme --- */
+(function() {
+  const tiltCards = document.querySelectorAll('.svc-card, .bento-cell, .btn');
+  
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    // Sayfa kaydırılırken tüm kartların manyetik ve tilt efektini sıfırlıyoruz.
+    // Çünkü fare hareket etmediğinde bile kartların ekrandaki yeri değişir, 
+    // eski mousemove değerleri kartı yanlış bir açıda takılı bırakır.
+    tiltCards.forEach(card => {
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        rotationX: 0,
+        rotationY: 0,
+        scale: 1,
+        z: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        overwrite: "auto"
+      });
+    });
+  }, { passive: true });
+})();
