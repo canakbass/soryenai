@@ -1,33 +1,49 @@
 /* --- SORYEN AI CINEMATIC JS --- */
 gsap.registerPlugin(ScrollTrigger);
 
-// 1. Preloader Sequence & Click to Speed Up
+// 1. Preloader Sequence & Morph
 const tlPreload = gsap.timeline();
 
-// Setup initial states
-gsap.set('#site-header', { y: -100, opacity: 0, xPercent: -50 });
+// Set header to final position initially so we can measure the logo
+gsap.set('#site-header', { y: 0, xPercent: -50, opacity: 0 });
 
-tlPreload.to('.preloader-logo', { opacity: 1, duration: 1, ease: "power2.inOut" })
-         .to('.preloader-progress', { width: "100%", duration: 1.5, ease: "power4.inOut" })
-         .to('.preloader', { backgroundColor: "transparent", duration: 0.8 }, "+=0.2")
-         .to('.preloader-progress', { opacity: 0, duration: 0.3 }, "<")
-         .to('.preloader-logo', { scale: 0.5, y: -window.innerHeight/2 + 40, opacity: 0, duration: 1, ease: "power3.inOut" }, "<")
-         .to('#site-header', { y: 0, opacity: 1,  duration: 0.8, ease: "power3.out" }, "-=0.6")
-         .fromTo('#h-eye', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.5")
-         .fromTo('#h-title', { y: 40, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2 }, "-=0.6")
-         .fromTo('#h-lead', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
-         .fromTo('#h-actions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
-         .fromTo('#h-proof', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
-         .set('.preloader', { display: "none" });
-
-// Speed up preloader on any click during intro
-const speedUp = () => {
-    if(tlPreload.progress() < 1) {
-        tlPreload.timeScale(2.5);
+window.addEventListener('load', () => {
+    const logo = document.querySelector('#site-header .logo');
+    const pLogo = document.querySelector('.preloader-logo');
+    
+    let xMove = -window.innerWidth/2 + 100;
+    let yMove = -window.innerHeight/2 + 50;
+    
+    if(logo && pLogo) {
+        const logoRect = logo.getBoundingClientRect();
+        const pRect = pLogo.getBoundingClientRect();
+        xMove = logoRect.left - pRect.left + (logoRect.width - pRect.width)/2;
+        yMove = logoRect.top - pRect.top + (logoRect.height - pRect.height)/2;
     }
-    document.removeEventListener('click', speedUp);
-};
-document.addEventListener('click', speedUp);
+
+    tlPreload.to('.preloader-logo', { opacity: 1, duration: 1, ease: "power2.inOut" })
+             .to('.preloader-progress', { width: "100%", duration: 1.5, ease: "power4.inOut" })
+             .to('.preloader', { backgroundColor: "transparent", duration: 0.8 }, "+=0.2")
+             .to('.preloader-progress', { opacity: 0, duration: 0.3 }, "<")
+             // Morph to logo
+             .to('.preloader-logo', { x: xMove, y: yMove, scale: 0.4, opacity: 0, duration: 1.2, ease: "power3.inOut" }, "<")
+             // Fade in header exactly as preloader logo disappears
+             .to('#site-header', { opacity: 1, duration: 0.8, ease: "power3.out" }, "-=0.6")
+             .fromTo('#h-eye', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.5")
+             .fromTo('#h-title', { y: 40, opacity: 0, filter: "blur(10px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.2 }, "-=0.6")
+             .fromTo('#h-lead', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
+             .fromTo('#h-actions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
+             .fromTo('#h-proof', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.8")
+             .set('.preloader', { display: "none" });
+
+    const speedUp = () => {
+        if(tlPreload.progress() < 1) {
+            tlPreload.timeScale(3);
+        }
+        document.removeEventListener('click', speedUp);
+    };
+    document.addEventListener('click', speedUp);
+});
 
 // 1.5 Scroll Progress Bar
 const scrollProgress = document.getElementById('scroll-progress');
