@@ -128,17 +128,18 @@
     gsap.utils.toArray(".bento-grid").forEach((grid) => {
       const cells = grid.querySelectorAll(".bento-cell");
       gsap.fromTo(cells, 
-        { y: 50, opacity: 0, scale: 0.95 }, 
+        { y: 80, opacity: 0, scale: 0.9, rotationX: 15 }, 
         { 
           y: 0, 
           opacity: 1, 
           scale: 1, 
-          duration: 0.8, 
-          stagger: 0.1, 
-          ease: "expo.out",
+          rotationX: 0,
+          duration: 1.4, 
+          stagger: 0.15, 
+          ease: "power4.out",
           scrollTrigger: {
             trigger: grid,
-            start: "top 80%"
+            start: "top 85%"
           }
         }
       );
