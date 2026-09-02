@@ -374,3 +374,101 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     observer.observe(section);
   });
 })();
+
+/* =======================================================
+   DENEYİM GÜNCELLEMELERİ (3D Tilt & Sinematik Giriş)
+   ======================================================= */
+(function() {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.innerWidth <= 768 || 'ontouchstart' in window) return;
+
+  // 1. Sinematik Hero Girişi
+  const heroH1 = document.querySelector('.hero .h1');
+  const heroLead = document.querySelector('.hero .lead');
+  const heroBtns = document.querySelector('.hero .hero__btns');
+  
+  if (heroH1) {
+    // Sadece bir kere çalışsın diye timeline kuruyoruz
+    const tl = gsap.timeline();
+    
+    // Header'ı da hafifçe yukarıdan indirelim
+    gsap.set('#site-header', { y: -100, opacity: 0 });
+    tl.to('#site-header', { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }, 0.2);
+
+    // Hero elementlerini hazırlıyoruz
+    gsap.set([heroH1, heroLead, heroBtns], { y: 80, opacity: 0, filter: "blur(12px)" });
+    
+    tl.to(heroH1, {
+      y: 0, opacity: 1, filter: "blur(0px)", duration: 1.5, ease: "power4.out"
+    }, 0.3)
+    .to(heroLead, {
+      y: 0, opacity: 1, filter: "blur(0px)", duration: 1.5, ease: "power4.out"
+    }, 0.5)
+    .to(heroBtns, {
+      y: 0, opacity: 1, filter: "blur(0px)", duration: 1.5, ease: "power4.out"
+    }, 0.7);
+  }
+
+  // 2. 3D Tilt (Derinlik) Efekti - Kartlar için
+  const tiltCards = document.querySelectorAll('.svc-card, .bento-cell');
+  tiltCards.forEach(card => {
+    // CSS'deki mevcut hover transform'unu ezmek için
+    card.style.transition = "border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease";
+    
+    // Parent elemente perspektif verelim ki 3D efekt belli olsun
+    if(card.parentElement) {
+      card.parentElement.style.perspective = "1200px";
+    }
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; // x position within the element
+      const y = e.clientY - rect.top;  // y position within the element
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Fare merkezden ne kadar uzaksa o kadar fazla dönsün
+      const rotateX = ((y - centerY) / centerY) * -6; // max -6 derece
+      const rotateY = ((x - centerX) / centerX) * 6;  // max 6 derece
+      
+      gsap.to(card, {
+        rotationX: rotateX,
+        rotationY: rotateY,
+        scale: 1.03, // hafif büyüme
+        z: 30,       // z ekseninde öne çıkma
+        duration: 0.4,
+        ease: 'power2.out',
+        overwrite: "auto"
+      });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotationX: 0,
+        rotationY: 0,
+        scale: 1,
+        z: 0,
+        duration: 1,
+        ease: 'elastic.out(1, 0.3)',
+        overwrite: "auto"
+      });
+    });
+  });
+
+  // 3. Parallax Kayma Efekti
+  if (typeof ScrollTrigger !== 'undefined') {
+    gsap.utils.toArray('.eyebrow').forEach(eyebrow => {
+      gsap.to(eyebrow, {
+        y: -40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: eyebrow,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    });
+  }
+
+})();

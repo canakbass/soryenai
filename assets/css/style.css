@@ -1614,3 +1614,13 @@ body::before {
 .nav {
   gap: 24px !important;
 }
+
+/* Scroll Progress Line Upgrade */
+.scroll-progress {
+  height: 4px !important;
+  background: linear-gradient(90deg, #3B82F6 0%, #7A5CFF 100%) !important;
+  box-shadow: 0 0 10px rgba(122, 92, 255, 0.5), 0 0 20px rgba(122, 92, 255, 0.3) !important;
+  z-index: 99999 !important;
+  transform-origin: left;
+  border-radius: 0 4px 4px 0;
+}
