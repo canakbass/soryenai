@@ -1315,3 +1315,31 @@ html.lenis, html.lenis body {
 .mini-flow {
   margin-top: 24px;
 }
+
+/* --- Premium svc-card (AI Çözümleri) --- */
+.svc-card {
+  background: rgba(20, 20, 22, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.svc-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(30, 30, 35, 0.6);
+  border-color: rgba(66, 117, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3), 0 0 20px rgba(66, 117, 255, 0.1);
+}
+
+.svc-card__go {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+  color: var(--fg-muted);
+}
+
+.svc-card:hover .svc-card__go {
+  transform: translateX(8px);
+  color: var(--accent);
+}
+

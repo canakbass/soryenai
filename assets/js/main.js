@@ -276,3 +276,25 @@
   });
 
 })();
+
+// AI Çözümleri Grid Animasyonu
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.utils.toArray(".svc-grid").forEach((grid) => {
+    const cards = grid.querySelectorAll(".svc-card");
+    gsap.fromTo(cards, 
+      { y: 60, opacity: 0, scale: 0.95 }, 
+      { 
+        y: 0, 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1.2, 
+        stagger: 0.1, 
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 85%"
+        }
+      }
+    );
+  });
+}
