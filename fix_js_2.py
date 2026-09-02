@@ -1,7 +1,12 @@
-/* --- SORYEN AI CINEMATIC JS --- */
-gsap.registerPlugin(ScrollTrigger);
+import re
 
-// 1. Preloader Sequence & Click to Speed Up
+with open('assets/js/main.js', 'r', encoding='utf-8') as f:
+    js = f.read()
+
+# 1. Replace Preloader Logic
+old_preloader = r'// 1\. Preloader Sequence.*?// 3\. Spotlight Text Reveal'
+
+new_preloader = """// 1. Preloader Sequence & Click to Speed Up
 const tlPreload = gsap.timeline();
 
 // Setup initial states
@@ -68,64 +73,10 @@ if (window.innerWidth > 768) {
   });
 }
 
-// 3. Spotlight Text Reveal
-gsap.to(".spotlight-text", {
-  opacity: 1,
-  scrollTrigger: {
-    trigger: ".spotlight-scene",
-    start: "top center",
-    end: "center center",
-    scrub: true,
-    onEnter: () => gsap.to(".spotlight-desc", {opacity: 1, y: -20, duration: 1}),
-    onLeaveBack: () => gsap.to(".spotlight-desc", {opacity: 0, y: 0, duration: 0.5})
-  }
-});
+// 3. Spotlight Text Reveal"""
 
-// Lenis Smooth Scroll
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  smooth: true,
-  mouseMultiplier: 1,
-  smoothTouch: false,
-  touchMultiplier: 2,
-  infinite: false,
-})
+js = re.sub(old_preloader, new_preloader, js, flags=re.DOTALL)
 
-function raf(time) {
-  lenis.raf(time)
-  requestAnimationFrame(raf)
-}
-requestAnimationFrame(raf)
+with open('assets/js/main.js', 'w', encoding='utf-8') as f:
+    f.write(js)
 
-
-// 5. Cinematic Reveals for New Content
-const revealElements = gsap.utils.toArray('.sector-card, .tl-item, .trust-cell, .svc-card, .senaryo-card');
-revealElements.forEach(el => {
-  gsap.fromTo(el, 
-    { y: 40, opacity: 0 },
-    {
-      y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        toggleActions: "play none none reverse"
-      }
-    }
-  );
-});
-
-// Form Button interaction
-const formBtn = document.querySelector('.cinematic-form .btn');
-if(formBtn) {
-  formBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    formBtn.innerText = "Gönderiliyor...";
-    setTimeout(() => {
-      formBtn.innerText = "Talebiniz Alındı";
-      formBtn.style.background = "#10B981"; // success green
-    }, 1500);
-  });
-}
