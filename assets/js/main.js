@@ -43,6 +43,14 @@ window.addEventListener('load', () => {
         document.removeEventListener('click', speedUp);
     };
     document.addEventListener('click', speedUp);
+
+    // If coming from another page with a hash link, skip preloader and scroll
+    if(window.location.hash && document.querySelector(window.location.hash)) {
+        tlPreload.progress(1);
+        setTimeout(() => {
+            lenis.scrollTo(window.location.hash, { offset: -80, duration: 1.5 });
+        }, 100);
+    }
 });
 
 // 1.5 Scroll Progress Bar
@@ -84,6 +92,7 @@ gsap.to(".spotlight-text", {
   }
 });
 
+
 // Lenis Smooth Scroll
 const lenis = new Lenis({
   duration: 1.2,
@@ -103,6 +112,53 @@ function raf(time) {
 }
 requestAnimationFrame(raf)
 
+// Intercept local anchor links for smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if(target !== "#" && document.querySelector(target)) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+        }
+    });
+});
+
+// Magnetic & 3D Tilt Effects for Buttons and Cards
+const magnetElements = document.querySelectorAll('.btn, .svc-card');
+magnetElements.forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    gsap.to(el, {
+      x: x * 0.15,
+      y: y * 0.15,
+      rotationX: -y * 0.05,
+      rotationY: x * 0.05,
+      duration: 0.6,
+      ease: 'power3.out'
+    });
+  });
+  
+  el.addEventListener('mouseleave', () => {
+    gsap.to(el, {
+      x: 0,
+      y: 0,
+      rotationX: 0,
+      rotationY: 0,
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.3)'
+    });
+  });
+});
+
+// Reset tilt on scroll to avoid sticking
+window.addEventListener('scroll', () => {
+  gsap.to(magnetElements, { x: 0, y: 0, rotationX: 0, rotationY: 0, duration: 0.3 });
+}, { passive: true });
+
+
 
 // 5. Cinematic Reveals for New Content
 const revealElements = gsap.utils.toArray('.sector-card, .tl-item, .trust-cell, .svc-card, .senaryo-card');
@@ -114,7 +170,7 @@ revealElements.forEach(el => {
       scrollTrigger: {
         trigger: el,
         start: "top 85%",
-        toggleActions: "play none none reverse"
+        toggleActions: "play reverse play reverse"
       }
     }
   );
