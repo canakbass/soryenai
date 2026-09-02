@@ -339,3 +339,38 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     });
   });
 })();
+
+// Navigasyon Aktif Durum (Scrollspy)
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav__link');
+
+  if (sections.length === 0 || navLinks.length === 0) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px', // Sayfanın ortasına yakın olanı seçer
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Önce tüm aktif classları temizle
+        navLinks.forEach(link => link.classList.remove('is-active'));
+        
+        // İlgili linki bul ve aktif et
+        const activeLink = document.querySelector(`.nav__link[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('is-active');
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+})();
