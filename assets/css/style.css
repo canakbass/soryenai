@@ -1592,3 +1592,25 @@ body::before {
   align-items: center;
   justify-content: center;
 }
+
+/* Nav linklerinin iki satıra düşmesini (wrap) engelleme */
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav a {
+  white-space: nowrap !important;
+}
+
+/* Nav boşluklarını ekran daraldığında esnek yapma */
+@media (max-width: 1024px) {
+  .nav__list {
+    gap: 12px;
+  }
+}
+
+.nav {
+  gap: 24px !important;
+}
