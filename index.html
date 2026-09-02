@@ -40,7 +40,7 @@
 
 <main>
   <section class="hero">
-    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__bg" aria-hidden="true"></div><div class="orb-bg" style="top:10%;left:70%"></div><div class="orb-bg" style="top:40%;left:20%;background:radial-gradient(circle, rgba(120,66,255,0.06) 0%, transparent 60%);"></div>
     <div class="wrap">
       <div class="fade-up"><p class="eyebrow"><span class="eyebrow__num">01</span><span class="eyebrow__sep">/</span><span>AI Sistemleri &amp; Agentlar</span></p></div>
       <h1 class="display">
@@ -144,36 +144,36 @@
         <h2 class="h2">Müşteri geldiğinde<br>ne oluyor?</h2>
         <p class="lead" style="margin:0">Teknolojiyi anlatmak yerine akışı gösteriyoruz. Aşağıdaki senaryoların her biri, bugün işletmelerde elle yürütülen süreçlerin sistemleştirilmiş hâli.</p>
       </div>
-      <div class="grid-4">
-      <div class="cell reveal">
+      <div class="bento-grid">
+      <div class="bento-cell bento-tall">
         <div class="cell__title">Instagram lead → satış</div>
         <ol class="mini-flow"><li>Yoruma “fiyat” yazıldı</li><li>DM açılır</li><li>AI ihtiyacı sorar</li><li>İletişim bilgisi</li><li>CRM kaydı</li><li>Satış ekibine sıcak lead</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell bento-wide">
         <div class="cell__title">Telefon → randevu</div>
         <ol class="mini-flow"><li>Müşteri arar</li><li>Voice AI ihtiyacı anlar</li><li>Takvimde boşluk bulur</li><li>Randevu oluşturur</li><li>WhatsApp onayı</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell">
         <div class="cell__title">Web → omnichannel</div>
         <ol class="mini-flow"><li>Web chatbot lead toplar</li><li>Ertesi gün WhatsApp</li><li>AI önceki konuşmayı bilir</li><li>Süreç kaldığı yerden devam eder</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell">
         <div class="cell__title">Mail → teklif</div>
         <ol class="mini-flow"><li>Teklif talebi analiz edilir</li><li>CRM bilgisi çekilir</li><li>Teklif taslağı</li><li>Yönetici onayı</li><li>Müşteriye gönderim</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell bento-tall">
         <div class="cell__title">Destek → ticket</div>
         <ol class="mini-flow"><li>Mesaj / telefon</li><li>Problem sınıflandırma</li><li>Bilgi tabanından çözüm</li><li>Çözülemezse ticket + yönlendirme</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell bento-wide">
         <div class="cell__title">Toplantı → CRM</div>
         <ol class="mini-flow"><li>Toplantı transkribe edilir</li><li>Özet + aksiyonlar</li><li>CRM notu</li><li>Follow-up görevi</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell">
         <div class="cell__title">Doküman → veri</div>
         <ol class="mini-flow"><li>PDF / fatura / form okunur</li><li>Alanlar çıkarılır</li><li>Doğrulama</li><li>ERP / CRM'e yazılır</li></ol>
       </div>
-      <div class="cell reveal">
+      <div class="bento-cell">
         <div class="cell__title">Multi-agent satış</div>
         <ol class="mini-flow"><li>Lead Agent</li><li>Sales Agent</li><li>Booking Agent</li><li>CRM Agent</li><li>Follow-up Agent</li></ol>
       </div></div>
@@ -427,6 +427,9 @@
     </div>
   </div>
 </footer>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
