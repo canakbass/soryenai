@@ -343,13 +343,13 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 // Navigasyon Aktif Durum (Scrollspy)
 (function() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav__link');
+  const navLinks = document.querySelectorAll('.nav a');
 
   if (sections.length === 0 || navLinks.length === 0) return;
 
   const observerOptions = {
     root: null,
-    rootMargin: '-20% 0px -70% 0px', // Sayfanın ortasına yakın olanı seçer
+    rootMargin: '-10% 0px -50% 0px', // Daha geniş algılama aralığı
     threshold: 0
   };
 
@@ -362,7 +362,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         navLinks.forEach(link => link.classList.remove('is-active'));
         
         // İlgili linki bul ve aktif et
-        const activeLink = document.querySelector(`.nav__link[href="#${id}"]`);
+        const activeLink = document.querySelector(`.nav a[href="#${id}"]`);
         if (activeLink) {
           activeLink.classList.add('is-active');
         }
