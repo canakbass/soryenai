@@ -2,6 +2,9 @@
 (function () {
   "use strict";
 
+  /* JS çalışıyor: belirme animasyonları ancak bu sınıf varsa devreye girer */
+  document.documentElement.classList.add("js");
+
   /* Mobil menü */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".nav");
@@ -20,26 +23,59 @@
     });
   }
 
-  /* Scroll ile içerik belirme */
-  var targets = document.querySelectorAll(".reveal");
+  /* Scroll ile içerik belirme.
+     IntersectionObserver yerine doğrudan konum ölçümü kullanılır: bazı
+     ortamlarda observer geç tetiklenip içeriği görünmez bırakabiliyor. */
+  var hedefler = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  var akislar = Array.prototype.slice.call(document.querySelectorAll(".flow"));
 
-  if (!("IntersectionObserver" in window)) {
-    Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-in"); });
-    return;
+  hedefler.forEach(function (el, i) {
+    el.style.transitionDelay = Math.min(i % 8, 6) * 45 + "ms";
+  });
+
+  function goster(el) {
+    if (el.classList.contains("is-in")) return;
+
+    if (el.classList.contains("flow")) {
+      var adimlar = el.querySelectorAll(".flow__step, .flow__arrow");
+      Array.prototype.forEach.call(adimlar, function (adim, i) {
+        adim.style.transitionDelay = i * 70 + "ms";
+      });
+    }
+    el.classList.add("is-in");
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("is-in");
-      io.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
+  function tara() {
+    var esik = window.innerHeight * 0.94;
 
-  Array.prototype.forEach.call(targets, function (el, i) {
-    el.style.transitionDelay = Math.min(i % 8, 6) * 45 + "ms";
-    io.observe(el);
-  });
+    hedefler = hedefler.filter(function (el) {
+      if (el.getBoundingClientRect().top > esik) return true;
+      goster(el);
+      return false;
+    });
+
+    akislar = akislar.filter(function (el) {
+      if (el.getBoundingClientRect().top > esik) return true;
+      goster(el);
+      return false;
+    });
+  }
+
+  var taramaBekliyor = false;
+
+  function taramaPlanla() {
+    if (taramaBekliyor) return;
+    taramaBekliyor = true;
+    window.requestAnimationFrame(function () {
+      taramaBekliyor = false;
+      tara();
+    });
+  }
+
+  window.addEventListener("scroll", taramaPlanla, { passive: true });
+  window.addEventListener("resize", taramaPlanla);
+  window.addEventListener("load", tara);
+  tara();
 })();
 
 /* Lead formu — statik sitede backend olmadan çalışır.
@@ -124,3 +160,59 @@
     say("E-posta uygulamanız açılıyor. Açılmazsa " + MAIL_TO + " adresine yazabilirsiniz.");
   });
 })();
+
+/* Hareket katmanı: okuma göstergesi, kompakt header, imleç aydınlatması,
+   akış diyagramının adım adım belirmesi. Tümü bağımlılıksız ve
+   prefers-reduced-motion tercihine saygılı. */
+(function () {
+  "use strict";
+
+  var azalt = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- okuma göstergesi + kompakt header --- */
+  var bar = document.getElementById("scroll-progress");
+  var header = document.getElementById("site-header");
+  var bekliyor = false;
+
+  function scrollUyarla() {
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (bar) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = "scaleX(" + (h > 0 ? Math.min(y / h, 1) : 0) + ")";
+    }
+    if (header) header.classList.toggle("is-compact", y > 40);
+
+    bekliyor = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (bekliyor) return;
+      bekliyor = true;
+      window.requestAnimationFrame(scrollUyarla);
+    },
+    { passive: true }
+  );
+  scrollUyarla();
+
+  if (azalt) return;
+
+  /* --- imleç konumuna göre hafif aydınlatma --- */
+  var kartlar = document.querySelectorAll(".svc-card, .cell");
+
+  Array.prototype.forEach.call(kartlar, function (kart) {
+    kart.addEventListener(
+      "pointermove",
+      function (e) {
+        var r = kart.getBoundingClientRect();
+        kart.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+        kart.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+      },
+      { passive: true }
+    );
+  });
+
+})();
+

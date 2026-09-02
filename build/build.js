@@ -24,7 +24,7 @@ const write = (rel, html) => {
 };
 
 const ARROW =
-  '<svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
+  '<span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>';
 
 /* ------------------------------------------------------------ ortak parçalar */
 
@@ -57,7 +57,8 @@ function header(depth) {
   const p = depth ? "../" : "";
   const h = depth ? p + "index.html" : "";
   return `
-<header class="site-header">
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<header class="site-header" id="site-header">
   <div class="wrap site-header__inner">
     <a class="logo" href="${p}index.html"><span class="logo__mark"></span> Soryen<span class="muted">&nbsp;AI</span></a>
     <nav class="nav" id="nav">
@@ -119,8 +120,28 @@ function footer(depth) {
 </html>`;
 }
 
+function marquee() {
+  const sozler = [
+    "Gerçek görevleri tamamlayan yapay zekâ",
+    "Telefon · WhatsApp · Instagram · Web · E-posta",
+    "Mevcut sistemlerinize entegre",
+    "Kritik adımlarda insan onayı",
+    "Tek müşteri hafızası, tüm kanallar",
+    "Kurulumdan ölçüme kadar uçtan uca",
+  ];
+  const grup =
+    '<div class="marquee__group">' +
+    sozler.map((t) => `<span class="marquee__dot"></span><span class="marquee__item">${esc(t)}</span>`).join("") +
+    "</div>";
+  return `
+      <div class="marquee fade-up" aria-hidden="true">
+        <div class="marquee__track">${grup}${grup}</div>
+      </div>`;
+}
+
 function eyebrow(num, text) {
-  return `<p class="eyebrow"><span class="eyebrow__num">${num}</span><span class="eyebrow__sep">/</span><span>${esc(text)}</span></p>`;
+  const on = num ? `<span class="eyebrow__num">${num}</span><span class="eyebrow__sep">/</span>` : "";
+  return `<p class="eyebrow">${on}<span>${esc(text)}</span></p>`;
 }
 
 /* ------------------------------------------------------------- ANA SAYFA -- */
@@ -129,9 +150,12 @@ function buildIndex() {
   const svcRows = D.categories
     .map(
       (c) => `
-      <a class="svc-row" href="cozumler/${c.slug}.html">
-        <span class="svc-row__num">${c.num}</span>
-        <span class="svc-row__title">${esc(c.title)}<span class="svc-row__desc">${esc(c.short)}</span></span>
+      <a class="svc-card" href="cozumler/${c.slug}.html" aria-label="${esc(c.title)} — detayları görüntüle">
+        <span class="svc-card__num">${c.num}</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">${esc(c.title)}</span>
+          <span class="svc-card__desc">${esc(c.short)}</span>
+        </span>
         ${ARROW}
       </a>`
     )
@@ -218,17 +242,20 @@ ${header(0)}
 
 <main>
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
     <div class="wrap">
-      ${eyebrow("01", "AI Sistemleri & Agentlar")}
-      <h1 class="display">İşletmeniz için<br>çalışan yapay zekâ<br>sistemleri.</h1>
-      <p class="lead">${esc(D.site.intro)}</p>
-      <div class="hero__actions">
+      <div class="fade-up">${eyebrow("01", "AI Sistemleri & Agentlar")}</div>
+      <h1 class="display">
+        <span class="line-mask"><span>İşletmeniz için</span></span>
+        <span class="line-mask"><span>çalışan yapay zekâ</span></span>
+        <span class="line-mask"><span>sistemleri.</span></span>
+      </h1>
+      <p class="lead fade-up">${esc(D.site.intro)}</p>
+      <div class="hero__actions fade-up">
         <a class="btn btn--solid btn--lg" href="#iletisim">Projenizi Konuşalım</a>
         <a class="btn btn--lg" href="#cozumler">AI Çözümlerini Gör</a>
       </div>
-      <div class="hero__strip">
-        ${D.site.strip.map((s) => `<span>${esc(s)}</span>`).join("")}
-      </div>
+      ${marquee()}
     </div>
   </section>
 
@@ -481,11 +508,12 @@ ${header(1)}
 
 <main>
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
     <div class="wrap">
-      ${eyebrow(c.num, c.title)}
-      <h1 class="display">${esc(c.title)}</h1>
-      <p class="lead">${esc(c.intro)}</p>
-      <div class="hero__actions">
+      <div class="fade-up">${eyebrow(c.num, c.title)}</div>
+      <h1 class="display"><span class="line-mask"><span>${esc(c.title)}</span></span></h1>
+      <p class="lead fade-up">${esc(c.intro)}</p>
+      <div class="hero__actions fade-up">
         <a class="btn btn--solid btn--lg" href="../index.html#iletisim">Projenizi Konuşalım</a>
         <a class="btn btn--lg" href="../index.html#cozumler">Tüm AI Çözümleri</a>
       </div>

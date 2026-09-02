@@ -20,7 +20,8 @@
 </head>
 <body>
 
-<header class="site-header">
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+<header class="site-header" id="site-header">
   <div class="wrap site-header__inner">
     <a class="logo" href="index.html"><span class="logo__mark"></span> Soryen<span class="muted">&nbsp;AI</span></a>
     <nav class="nav" id="nav">
@@ -39,16 +40,22 @@
 
 <main>
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="eyebrow"><span class="eyebrow__num">01</span><span class="eyebrow__sep">/</span><span>AI Sistemleri &amp; Agentlar</span></p>
-      <h1 class="display">İşletmeniz için<br>çalışan yapay zekâ<br>sistemleri.</h1>
-      <p class="lead">Müşterilerinizle konuşan, satış yapan, randevu oluşturan, verileri analiz eden ve iş süreçlerini yöneten; şirketinize özel yapay zekâ sistemleri geliştiriyoruz.</p>
-      <div class="hero__actions">
+      <div class="fade-up"><p class="eyebrow"><span class="eyebrow__num">01</span><span class="eyebrow__sep">/</span><span>AI Sistemleri &amp; Agentlar</span></p></div>
+      <h1 class="display">
+        <span class="line-mask"><span>İşletmeniz için</span></span>
+        <span class="line-mask"><span>çalışan yapay zekâ</span></span>
+        <span class="line-mask"><span>sistemleri.</span></span>
+      </h1>
+      <p class="lead fade-up">Müşterilerinizle konuşan, satış yapan, randevu oluşturan, verileri analiz eden ve iş süreçlerini yöneten; şirketinize özel yapay zekâ sistemleri geliştiriyoruz.</p>
+      <div class="hero__actions fade-up">
         <a class="btn btn--solid btn--lg" href="#iletisim">Projenizi Konuşalım</a>
         <a class="btn btn--lg" href="#cozumler">AI Çözümlerini Gör</a>
       </div>
-      <div class="hero__strip">
-        <span>Telefon</span><span>WhatsApp</span><span>Instagram</span><span>Web</span><span>E-posta</span><span>CRM</span><span>ERP</span>
+      
+      <div class="marquee fade-up" aria-hidden="true">
+        <div class="marquee__track"><div class="marquee__group"><span class="marquee__dot"></span><span class="marquee__item">Gerçek görevleri tamamlayan yapay zekâ</span><span class="marquee__dot"></span><span class="marquee__item">Telefon · WhatsApp · Instagram · Web · E-posta</span><span class="marquee__dot"></span><span class="marquee__item">Mevcut sistemlerinize entegre</span><span class="marquee__dot"></span><span class="marquee__item">Kritik adımlarda insan onayı</span><span class="marquee__dot"></span><span class="marquee__item">Tek müşteri hafızası, tüm kanallar</span><span class="marquee__dot"></span><span class="marquee__item">Kurulumdan ölçüme kadar uçtan uca</span></div><div class="marquee__group"><span class="marquee__dot"></span><span class="marquee__item">Gerçek görevleri tamamlayan yapay zekâ</span><span class="marquee__dot"></span><span class="marquee__item">Telefon · WhatsApp · Instagram · Web · E-posta</span><span class="marquee__dot"></span><span class="marquee__item">Mevcut sistemlerinize entegre</span><span class="marquee__dot"></span><span class="marquee__item">Kritik adımlarda insan onayı</span><span class="marquee__dot"></span><span class="marquee__item">Tek müşteri hafızası, tüm kanallar</span><span class="marquee__dot"></span><span class="marquee__item">Kurulumdan ölçüme kadar uçtan uca</span></div></div>
       </div>
     </div>
   </section>
@@ -63,45 +70,69 @@
         <p class="lead" style="margin:0">İletişimden karar destek süreçlerine kadar gerçek görevleri yerine getiren, mevcut sistemlerinizle entegre ve ihtiyaca özel yapay zekâ sistemleri geliştiriyoruz.</p>
       </div>
       <div class="svc-grid">
-      <a class="svc-row" href="cozumler/sesli-ai-asistanlar.html">
-        <span class="svc-row__num">01</span>
-        <span class="svc-row__title">Sesli AI Asistanlar<span class="svc-row__desc">Telefonu 7/24 açan, randevu oluşturan, arama yapan sesli yapay zekâ.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/sesli-ai-asistanlar.html" aria-label="Sesli AI Asistanlar — detayları görüntüle">
+        <span class="svc-card__num">01</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">Sesli AI Asistanlar</span>
+          <span class="svc-card__desc">Telefonu 7/24 açan, randevu oluşturan, arama yapan sesli yapay zekâ.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/ai-chatbotlar.html">
-        <span class="svc-row__num">02</span>
-        <span class="svc-row__title">AI Chatbotlar<span class="svc-row__desc">WhatsApp, Instagram, web ve Telegram'da satış yapan akıllı asistanlar.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/ai-chatbotlar.html" aria-label="AI Chatbotlar — detayları görüntüle">
+        <span class="svc-card__num">02</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">AI Chatbotlar</span>
+          <span class="svc-card__desc">WhatsApp, Instagram, web ve Telegram'da satış yapan akıllı asistanlar.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/ai-agentlar.html">
-        <span class="svc-row__num">03</span>
-        <span class="svc-row__title">AI Agentlar<span class="svc-row__desc">Sadece cevap vermeyen, görevi baştan sona tamamlayan dijital çalışanlar.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/ai-agentlar.html" aria-label="AI Agentlar — detayları görüntüle">
+        <span class="svc-card__num">03</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">AI Agentlar</span>
+          <span class="svc-card__desc">Sadece cevap vermeyen, görevi baştan sona tamamlayan dijital çalışanlar.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/satis-lead-ai.html">
-        <span class="svc-row__num">04</span>
-        <span class="svc-row__title">Satış &amp; Lead AI<span class="svc-row__desc">Lead'i niteliklendiren, sıcak müşteriyi bulan ve takibi bırakmayan sistemler.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/satis-lead-ai.html" aria-label="Satış &amp; Lead AI — detayları görüntüle">
+        <span class="svc-card__num">04</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">Satış &amp; Lead AI</span>
+          <span class="svc-card__desc">Lead'i niteliklendiren, sıcak müşteriyi bulan ve takibi bırakmayan sistemler.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/email-iletisim-ai.html">
-        <span class="svc-row__num">05</span>
-        <span class="svc-row__title">E-mail &amp; İletişim AI<span class="svc-row__desc">Gelen kutusunu okuyan, sınıflandıran, cevaplayan ve teklif hazırlayan sistem.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/email-iletisim-ai.html" aria-label="E-mail &amp; İletişim AI — detayları görüntüle">
+        <span class="svc-card__num">05</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">E-mail &amp; İletişim AI</span>
+          <span class="svc-card__desc">Gelen kutusunu okuyan, sınıflandıran, cevaplayan ve teklif hazırlayan sistem.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/akilli-bilgi-sistemleri.html">
-        <span class="svc-row__num">06</span>
-        <span class="svc-row__title">Akıllı Bilgi Sistemleri<span class="svc-row__desc">Şirketinizin tüm bilgisini bilen, çalışanlarınıza cevap veren özel yapay zekâ.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/akilli-bilgi-sistemleri.html" aria-label="Akıllı Bilgi Sistemleri — detayları görüntüle">
+        <span class="svc-card__num">06</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">Akıllı Bilgi Sistemleri</span>
+          <span class="svc-card__desc">Şirketinizin tüm bilgisini bilen, çalışanlarınıza cevap veren özel yapay zekâ.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/ai-is-otomasyonlari.html">
-        <span class="svc-row__num">07</span>
-        <span class="svc-row__title">AI İş Otomasyonları<span class="svc-row__desc">Mailden CRM'e, formdan teklife kadar uçtan uca yürüyen iş akışları.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/ai-is-otomasyonlari.html" aria-label="AI İş Otomasyonları — detayları görüntüle">
+        <span class="svc-card__num">07</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">AI İş Otomasyonları</span>
+          <span class="svc-card__desc">Mailden CRM'e, formdan teklife kadar uçtan uca yürüyen iş akışları.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a>
-      <a class="svc-row" href="cozumler/ai-veri-analiz.html">
-        <span class="svc-row__num">08</span>
-        <span class="svc-row__title">AI Veri &amp; Analiz Sistemleri<span class="svc-row__desc">Belgeleri okuyan, veriyi analiz eden ve yöneticiye cevap veren sistemler.</span></span>
-        <svg class="svc-row__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a class="svc-card" href="cozumler/ai-veri-analiz.html" aria-label="AI Veri &amp; Analiz Sistemleri — detayları görüntüle">
+        <span class="svc-card__num">08</span>
+        <span class="svc-card__body">
+          <span class="svc-card__title">AI Veri &amp; Analiz Sistemleri</span>
+          <span class="svc-card__desc">Belgeleri okuyan, veriyi analiz eden ve yöneticiye cevap veren sistemler.</span>
+        </span>
+        <span class="svc-card__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
       </a></div>
     </div>
   </section>
